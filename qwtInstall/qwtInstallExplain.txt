@@ -1,0 +1,31 @@
+
+下载：svn://svn.code.sf.net/p/qwt/code/branches/qwt-5.2
+一、安装步骤
+cd qwt5.2
+qmake-qt4 qwt.pro
+make 
+make install
+
+二、安装库
+[root@localhost qwt5.2]# vim  /etc/profile
+
+export LD_LIBRARY_PATH=/usr/local/qwt-5.2.4-svn/lib:$LD_LIBRARY_PATH
+export CPLUS_INCLUDE_PATH=/usr/local/qwt-5.2.4-svn/include:$CPLUS_INCLUDE_PATH
+export C_INCLUDE_PATH=/usr/local/qwt-5.2.4-svn/include:$C_INCLUDE_PATH
+
+
+三、配置qtdesigner下插件
+
+[root@localhost designer]# pwd
+/root/qwt5.2/designer/plugins/designer
+[root@localhost designer]# cp libqwt_designer_plugin.so   /opt/qtcreator-2.6.84/bin/designer/
+
+四、工程配置使用
+在打开的工程.pro中
+尾部添加：
+
+#qwt setting
+INCLUDEPATH += /usr/local/qwt-5.2.4-svn/include
+LIBS += -L"/usr/local/qwt-5.2.4-svn/lib/"   -lqwt
+#end qwt setting
+
